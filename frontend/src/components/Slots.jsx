@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
+import { stateContext } from "../context/StateContext";
 
-const Slots = ({ room }) => {
-  const [time, setTime] = useState(-1);
+const Slots = () => {
   const startTime = new Date();
   const endTime = new Date();
+  const { currentRoom, currentTime, setCurrentTime } = useContext(stateContext);
 
-  if (room === "clinic") {
+  if (currentRoom === "clinic") {
     startTime.setHours(10, 0, 0, 0);
     endTime.setHours(11, 45, 0, 0);
-  } else if (room === "phone") {
+  } else if (currentRoom === "phone") {
     startTime.setHours(12, 0, 0, 0);
     endTime.setHours(2, 40, 0, 0);
   } else {
@@ -17,9 +18,7 @@ const Slots = ({ room }) => {
   }
 
   const timeArray = [];
-  const interval = room === "video" ? 20 * 60 * 1000 : 15 * 60 * 1000;
-
-  console.log(room, startTime, endTime);
+  const interval = currentRoom === "video" ? 20 * 60 * 1000 : 15 * 60 * 1000;
 
   for (
     let currentTime = startTime;
@@ -41,17 +40,17 @@ const Slots = ({ room }) => {
           <div
             key={index}
             className={`border text-center p-2 rounded-lg transition-colors ${
-              index === time && "bg-green-600 text-white font-semibold"
+              index === currentTime && "bg-green-600 text-white font-semibold"
             }`}
-            onClick={() => setTime(index)}
+            onClick={() => setCurrentTime(index)}
           >
             {data}
           </div>
         ))}
       </div>
       <div
-        className={`  self-end mr-10 transition-colors bg-gray-300 py-2 px-4 rounded-lg  ${
-          time != -1 && "bg-green-800 text-white font-semibold"
+        className={`  self-end mr-5 transition-colors bg-gray-300 py-2 px-8 rounded-lg  ${
+          currentTime != -1 && "bg-green-800 text-white font-semibold"
         }`}
       >
         Continue

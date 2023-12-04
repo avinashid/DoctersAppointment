@@ -1,4 +1,3 @@
-import React from "react";
 import { FaUserMd } from "react-icons/fa";
 
 const Profile = () => {

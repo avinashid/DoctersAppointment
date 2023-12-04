@@ -1,11 +1,14 @@
-import { useState, useRef } from "react";
-import { format, addDays, isToday, isTomorrow } from "date-fns";
+import {  useRef, useContext } from "react";
+import { format, isToday, isTomorrow } from "date-fns";
 import { FaCircleRight } from "react-icons/fa6";
 import { FaCircleLeft } from "react-icons/fa6";
+import { stateContext } from "../context/StateContext";
 import Slots from "./Slots";
 
-const Calender = ({ room }) => {
-  const [dateSelected, setDateSelected] = useState(0);
+const Calender = () => {
+
+  const { currentDate, setCurrentDate } = useContext(stateContext);
+
   const startDateCopy = new Date();
   console.log(startDateCopy);
   const dates = [new Date()];
@@ -35,8 +38,7 @@ const Calender = ({ room }) => {
   };
 
   const handleSelectDate = ({ index }) => {
-    console.log(index);
-    setDateSelected(index);
+    setCurrentDate(index);
   };
 
   return (
@@ -56,11 +58,11 @@ const Calender = ({ room }) => {
             <div
               key={index}
               className={`flex-1 text-center self-center w-50 bg-gray-200 p-2 transition-colors ease-in-out rounded font-semibold  snap-center ${
-                dateSelected == index &&
+                currentDate == index &&
                 "border-blue-600 border-b-4 text-black bg-blue-100 font-bold"
               }`}
               style={{ minWidth: "33.3%" }}
-              onClick={() => handleSelectDate({ index, date })}
+              onClick={() => handleSelectDate({ index })}
             >
               {formatDateLabel(date)}
             </div>
@@ -73,7 +75,7 @@ const Calender = ({ room }) => {
           <FaCircleRight />
         </button>
       </div>
-      <Slots room={room} />
+      <Slots />
     </div>
   );
 };

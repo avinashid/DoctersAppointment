@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import { MdAddHome } from "react-icons/md";
 import { MdCall } from "react-icons/md";
 import { IoVideocam } from "react-icons/io5";
 import Calender from "./Calender";
+import { stateContext } from "../context/StateContext";
 
 const BookAppointment = () => {
-  const [toggle, setToggle] = useState("clinic");
-
+  const { currentRoom, setCurrentRoom, setCurrentTime, setCurrentDate } =
+    useContext(stateContext);
+  const handleRoomChange = async ({ room }) => {
+    setCurrentRoom(room);
+    setCurrentTime(-1);
+    setCurrentDate(0);
+  };
 
   return (
     <div className="">
@@ -22,27 +28,27 @@ const BookAppointment = () => {
         <div className="text-4xl flex gap-6 justify-center">
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 transition-colors ease-out  rounded-xl active:bg-green-200 ${
-              toggle === "clinic" ? " bg-green-700 text-white  " : ""
+              currentRoom === "clinic" ? " bg-green-700 text-white  " : ""
             }`}
-            onClick={() => setToggle("clinic")}
+            onClick={() => handleRoomChange({ room: "clinic" })}
           >
             <MdAddHome />
             <div className="text-sm">Clinic</div>
           </div>
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
-              toggle == "audio" ? "bg-green-700 text-white " : ""
+              currentRoom == "audio" ? "bg-green-700 text-white " : ""
             }`}
-            onClick={() => setToggle("audio")}
+            onClick={() => handleRoomChange({ room: "audio" })}
           >
             <MdCall />
             <div className="text-sm">Audio</div>
           </div>
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
-              toggle == "video" ? "bg-green-700 text-white " : ""
+              currentRoom == "video" ? "bg-green-700 text-white " : ""
             }`}
-            onClick={() => setToggle("video")}
+            onClick={() => handleRoomChange({ room: "video" })}
           >
             <IoVideocam />
             <div className="text-sm">Video</div>
@@ -50,7 +56,7 @@ const BookAppointment = () => {
         </div>
       </div>
       <div className="mx-4">
-        <Calender room={toggle} />
+        <Calender />
       </div>
     </div>
   );
