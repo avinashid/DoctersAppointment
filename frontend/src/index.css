@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes scrollAnimation {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-scroll {
-  animation: scrollAnimation 0.5s ease-out;
+.scroll::-webkit-scrollbar {
+  display: none;
 }

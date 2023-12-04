@@ -5,7 +5,8 @@ import { IoVideocam } from "react-icons/io5";
 import Calender from "./Calender";
 
 const BookAppointment = () => {
-  const [toggle, setToggle] = useState("clinic  ");
+  const [toggle, setToggle] = useState("clinic");
+
 
   return (
     <div className="">
@@ -20,9 +21,10 @@ const BookAppointment = () => {
         </div>
         <div className="text-4xl flex gap-6 justify-center">
           <div
-            className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2  rounded-xl active:bg-green-200 ${
+            className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 transition-colors ease-out  rounded-xl active:bg-green-200 ${
               toggle === "clinic" ? " bg-green-700 text-white  " : ""
             }`}
+            onClick={() => setToggle("clinic")}
           >
             <MdAddHome />
             <div className="text-sm">Clinic</div>
@@ -31,6 +33,7 @@ const BookAppointment = () => {
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
               toggle == "audio" ? "bg-green-700 text-white " : ""
             }`}
+            onClick={() => setToggle("audio")}
           >
             <MdCall />
             <div className="text-sm">Audio</div>
@@ -39,6 +42,7 @@ const BookAppointment = () => {
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
               toggle == "video" ? "bg-green-700 text-white " : ""
             }`}
+            onClick={() => setToggle("video")}
           >
             <IoVideocam />
             <div className="text-sm">Video</div>
@@ -46,7 +50,7 @@ const BookAppointment = () => {
         </div>
       </div>
       <div className="mx-4">
-      <Calender />
+        <Calender room={toggle} />
       </div>
     </div>
   );
