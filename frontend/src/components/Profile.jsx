@@ -10,7 +10,7 @@ const Profile = () => {
       </div>
       <div className="flex flex-col gap-1">
         <div className="font-bold text-xl">Dr. Manik Dalvi</div>
-        <div>Obstetrics & Gynacology</div>
+        <div className="text-sm text-gray-600">Obstetrics & Gynacology</div>
         <div
           className="border px-3 py-2 font-semibold text-center mt-3 text-blue-500 rounded-md shadow-sm active:shadow-inner active:bg-blue-100"
           onClick={() => navigate("/profile")}

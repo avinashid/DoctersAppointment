@@ -10,7 +10,6 @@ const Calender = () => {
     useContext(stateContext);
 
   const startDateCopy = new Date();
-  console.log(startDateCopy);
   const dates = [new Date()];
   for (let i = 0; i < 30; i++) {
     dates.push(new Date(startDateCopy.setDate(startDateCopy.getDate() + 1)));
@@ -37,8 +36,8 @@ const Calender = () => {
     }
   };
 
-  const handleSelectDate = ({ index }) => {
-    setCurrentDate(index);
+  const handleSelectDate = ({ date }) => {
+    setCurrentDate(date);
     setCurrentTime(-1);
   };
 
@@ -59,11 +58,11 @@ const Calender = () => {
             <div
               key={index}
               className={`flex-1 text-center self-center w-50 cursor-pointer bg-gray-200 p-2 transition-colors ease-in-out rounded font-semibold  snap-center ${
-                currentDate == index &&
+                currentDate.getDay() == date.getDay() &&
                 "border-blue-600 border-b-4 text-black bg-blue-100 font-bold"
               }`}
               style={{ minWidth: "33.3%" }}
-              onClick={() => handleSelectDate({ index })}
+              onClick={() => handleSelectDate({ date })}
             >
               {formatDateLabel(date)}
             </div>

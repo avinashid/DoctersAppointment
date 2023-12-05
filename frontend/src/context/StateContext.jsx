@@ -4,7 +4,7 @@ export const stateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
   const [currentRoom, setCurrentRoom] = useState("clinic");
-  const [currentDate, setCurrentDate] = useState(0);
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(-1);
 
   return (

@@ -1,7 +1,9 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
+import { useNavigate } from "react-router-dom";
 
 const Slots = () => {
+  const navigate = useNavigate();
   const startTime = new Date();
   const endTime = new Date();
   const { currentRoom, currentTime, setCurrentTime } = useContext(stateContext);
@@ -40,9 +42,9 @@ const Slots = () => {
           <div
             key={index}
             className={`border text-center p-2 rounded-lg transition-colors ${
-              index === currentTime && "bg-green-600 text-white font-semibold"
+              data === currentTime && "bg-green-600 text-white font-semibold"
             }`}
-            onClick={() => setCurrentTime(index)}
+            onClick={() => setCurrentTime(data)}
           >
             {data}
           </div>
@@ -50,8 +52,10 @@ const Slots = () => {
       </div>
       <div
         className={`  self-end mr-5 transition-colors bg-gray-300 py-2 px-8 rounded-lg  ${
-          currentTime != -1 && "bg-green-800 text-white font-semibold cursor-pointer"
+          currentTime != -1 &&
+          "bg-green-800 text-white font-semibold cursor-pointer"
         }`}
+        onClick={() => currentTime != -1 && navigate("/consultation")}
       >
         Continue
       </div>

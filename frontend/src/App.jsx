@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/ErrorPage";
 import Contact from "./pages/Contact";
 import Homepage from "./pages/Homepage";
+import Consultation from "./pages/Consultation";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const App = () => {
         {
           path: "/contact",
           element: <Contact />,
+        },
+        {
+          path: "/consultation",
+          element: <Consultation />,
         },
       ],
     },

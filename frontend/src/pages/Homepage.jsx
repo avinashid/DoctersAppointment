@@ -3,9 +3,11 @@ import Header from "../components/Header";
 
 const Homepage = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="">
       <Header />
-      <Outlet />
+      <div className=" max-w-screen-lg m-auto my-8">
+        <Outlet />
+      </div>
     </div>
   );
 };
