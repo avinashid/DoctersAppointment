@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 const Homepage = () => {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <Header />
       <div className=" max-w-screen-lg m-auto my-8">
         <Outlet />

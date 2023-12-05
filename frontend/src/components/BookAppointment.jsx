@@ -11,7 +11,7 @@ const BookAppointment = () => {
   const handleRoomChange = async ({ room }) => {
     setCurrentRoom(room);
     setCurrentTime(-1);
-    setCurrentDate(0);
+    setCurrentDate(new Date());
   };
 
   return (
@@ -28,27 +28,27 @@ const BookAppointment = () => {
         <div className="text-4xl flex gap-6 justify-center">
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 transition-colors ease-out  rounded-xl active:bg-green-200 ${
-              currentRoom === "clinic" ? " bg-green-700 text-white  " : ""
+              currentRoom === "In Clinic" ? " bg-green-700 text-white  " : ""
             }`}
-            onClick={() => handleRoomChange({ room: "clinic" })}
+            onClick={() => handleRoomChange({ room: "In Clinic" })}
           >
             <MdAddHome />
             <div className="text-sm">Clinic</div>
           </div>
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
-              currentRoom == "audio" ? "bg-green-700 text-white " : ""
+              currentRoom == "Audio" ? "bg-green-700 text-white " : ""
             }`}
-            onClick={() => handleRoomChange({ room: "audio" })}
+            onClick={() => handleRoomChange({ room: "Audio" })}
           >
             <MdCall />
             <div className="text-sm">Audio</div>
           </div>
           <div
             className={`border pt-5 px-6 pb-2 bg-green-100 flex flex-col items-center gap-2 rounded-xl active:bg-green-200 ${
-              currentRoom == "video" ? "bg-green-700 text-white " : ""
+              currentRoom == "Video" ? "bg-green-700 text-white " : ""
             }`}
-            onClick={() => handleRoomChange({ room: "video" })}
+            onClick={() => handleRoomChange({ room: "Video" })}
           >
             <IoVideocam />
             <div className="text-sm">Video</div>

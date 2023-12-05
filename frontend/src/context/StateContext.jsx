@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const stateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-  const [currentRoom, setCurrentRoom] = useState("clinic");
+  const [currentRoom, setCurrentRoom] = useState("In Clinic");
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(-1);
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { stateContext } from "../context/StateContext";
 import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,17 @@ import { SlCalender } from "react-icons/sl";
 const Consultation = () => {
   const navigate = useNavigate();
   const { currentRoom, currentTime, currentDate } = useContext(stateContext);
-  console.log(currentDate, currentTime, currentRoom);
+  const [error, setError] = useState("");
+  const [number, setNumber] = useState("");
+
+  const handleSubmit = async () => {
+    setError("");
+    if (number.length !== 10) setError("Invalid Number");
+    else {
+      console.log(currentDate, currentTime, currentRoom);
+    }
+  };
+
   useEffect(() => {
     if (currentTime === -1) navigate("/");
   }, [currentTime, navigate]);
@@ -28,7 +38,7 @@ const Consultation = () => {
             <div className="text-lg ">{currentRoom} Consultation</div>
             <div className="text-xs text-green-500">Fees approx ₹ 500</div>
             <div className="text-xs text-blue-600">
-              {currentRoom === "clinic" && "(pay at clinic)"}
+              {currentRoom === "In Clinic" && "(pay at clinic)"}
             </div>
           </div>
         </div>
@@ -45,6 +55,47 @@ const Consultation = () => {
             </div>
             <div>{currentDate.toLocaleDateString()}</div>
           </div>
+        </div>
+      </div>
+      <div className="font-semibold mx-8  underline text-blue-600 text-md">
+        Change date & time
+      </div>
+      <br />
+      <div className="flex border flex-col mx-8 gap-4 border-gray-600 py-6 px-8 rounded-md">
+        <div className="font-semibold text-lg">
+          Enter your phone number to continue
+        </div>
+        <div className="text-sm font-semibold">
+          Please enter your WhatsApp number to receive timely updates.
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="text-sm text-gray-600">Enter your number *</div>
+          <input
+            className="border rounded-lg px-4 w-fit py-2"
+            type="number"
+            name=""
+            id=""
+            placeholder="Mobile Number"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+          />
+        </div>
+        <div className="text-xs text-red-600">{error}</div>
+        <div className="max-w-[210px] text-xs text-gray-600">
+          Please enter the mobile number of the patient. You will receive a
+          confirmation message on this number.
+        </div>
+        <div className="self-end">
+          <button
+            className={`bg-green-600 rounded-md font-semibold text-white p-2 px-4 ${
+              number.length === 10
+                ? "active:bg-green-700 bg-green-600 "
+                : "bg-gray-400"
+            }`}
+            onClick={handleSubmit}
+          >
+            Send Confirmation
+          </button>
         </div>
       </div>
     </div>
