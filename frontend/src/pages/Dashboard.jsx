@@ -5,7 +5,6 @@ import BookAppointment from "../components/BookAppointment";
 const Dashboard = () => {
   return (
     <div className="flex flex-col gap-4">
-      <Header />
       <Profile />
       <BookAppointment />
     </div>

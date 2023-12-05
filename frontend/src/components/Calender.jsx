@@ -1,4 +1,4 @@
-import {  useRef, useContext } from "react";
+import { useRef, useContext } from "react";
 import { format, isToday, isTomorrow } from "date-fns";
 import { FaCircleRight } from "react-icons/fa6";
 import { FaCircleLeft } from "react-icons/fa6";
@@ -6,8 +6,8 @@ import { stateContext } from "../context/StateContext";
 import Slots from "./Slots";
 
 const Calender = () => {
-
-  const { currentDate, setCurrentDate } = useContext(stateContext);
+  const { currentDate, setCurrentDate, setCurrentTime } =
+    useContext(stateContext);
 
   const startDateCopy = new Date();
   console.log(startDateCopy);
@@ -39,6 +39,7 @@ const Calender = () => {
 
   const handleSelectDate = ({ index }) => {
     setCurrentDate(index);
+    setCurrentTime(-1);
   };
 
   return (
@@ -57,7 +58,7 @@ const Calender = () => {
           {dates.map((date, index) => (
             <div
               key={index}
-              className={`flex-1 text-center self-center w-50 bg-gray-200 p-2 transition-colors ease-in-out rounded font-semibold  snap-center ${
+              className={`flex-1 text-center self-center w-50 cursor-pointer bg-gray-200 p-2 transition-colors ease-in-out rounded font-semibold  snap-center ${
                 currentDate == index &&
                 "border-blue-600 border-b-4 text-black bg-blue-100 font-bold"
               }`}

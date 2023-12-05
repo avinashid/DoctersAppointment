@@ -3,19 +3,28 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/ErrorPage";
 import Contact from "./pages/Contact";
+import Homepage from "./pages/Homepage";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Dashboard />,
+      element: <Homepage />,
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "contacts/:contactId",
+          path: "/",
+          element: <Dashboard />,
+        },
+        {
+          path: "/contact",
           element: <Contact />,
         },
       ],
+    },
+    {
+      path: "profile",
+      element: <Contact />,
     },
   ]);
   return <RouterProvider router={router} />;

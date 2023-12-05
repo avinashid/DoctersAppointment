@@ -50,7 +50,7 @@ const Slots = () => {
       </div>
       <div
         className={`  self-end mr-5 transition-colors bg-gray-300 py-2 px-8 rounded-lg  ${
-          currentTime != -1 && "bg-green-800 text-white font-semibold"
+          currentTime != -1 && "bg-green-800 text-white font-semibold cursor-pointer"
         }`}
       >
         Continue
