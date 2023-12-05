@@ -4,12 +4,13 @@ import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { SlClock } from "react-icons/sl";
+import axios from "axios";
 
 import { SlCalender } from "react-icons/sl";
 
 const Consultation = () => {
   const navigate = useNavigate();
-  const { currentRoom, currentTime, currentDate } = useContext(stateContext);
+  const { currentRoom, currentTime, currentDate,setRefresh } = useContext(stateContext);
   const [error, setError] = useState("");
   const [number, setNumber] = useState("");
 
@@ -18,6 +19,24 @@ const Consultation = () => {
     if (number.length !== 10) setError("Invalid Number");
     else {
       console.log(currentDate, currentTime, currentRoom);
+      try {
+        const data = await axios.post(
+          "http://localhost:5000/api/doctors/slots",
+          {
+            doctor: "Dr. Manik Dalvi",
+            time: currentTime,
+            date: currentDate.toLocaleDateString(),
+            type: currentRoom,
+          }
+        );
+        console.log(data.data);
+        window.alert("Success! You may get a confirmation call !");
+        navigate("/");
+        setRefresh(true)
+      } catch (error) {
+        window.alert("Something Went Wrong");
+        console.log(error.message);
+      }
     }
   };
 
@@ -87,7 +106,7 @@ const Consultation = () => {
         </div>
         <div className="self-end">
           <button
-            className={`bg-green-600 rounded-md font-semibold text-white p-2 px-4 ${
+            className={` rounded-md font-semibold text-white p-2 px-4 ${
               number.length === 10
                 ? "active:bg-green-700 bg-green-600 "
                 : "bg-gray-400"
