@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MdAddHome } from "react-icons/md";
 import { MdCall } from "react-icons/md";
 import { IoVideocam } from "react-icons/io5";
@@ -6,15 +6,15 @@ import Calender from "./Calender";
 import { stateContext } from "../context/StateContext";
 
 const BookAppointment = () => {
-  const { currentRoom, setCurrentRoom, setCurrentTime, setCurrentDate, fees} =
-    useContext(stateContext);
+  const { currentRoom, setCurrentRoom, setCurrentTime, setCurrentDate, fees } =
+  useContext(stateContext);
   const handleRoomChange = async ({ room }) => {
     setCurrentRoom(room);
     setCurrentTime(-1);
     setCurrentDate(new Date());
   };
-  const currentFees = fees.filter(data=>data.type === currentRoom)[0]
-  console.log(currentFees)
+  const currentFees = fees.length!==0 && fees.filter((data) => data.type === currentRoom)[0];
+  console.log(currentFees);
   return (
     <div className="">
       <div className="flex flex-col justify-around mx-4 gap-4 md:flex-row">
@@ -22,7 +22,7 @@ const BookAppointment = () => {
           <div className="text-xl font-semibold ">Book Appointment</div>
           <div className="text-gray-400">Select your consultation type</div>
           <div className="text-green-600 text-sm font-bold">
-            Fees approx ₹ {currentFees.fees}
+            Fees approx ₹ { currentFees.fees || "Loading ..."}
             <div className="text-blue-500">(pay at clinic)</div>
           </div>
         </div>
