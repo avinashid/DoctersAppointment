@@ -14,15 +14,15 @@ export const StateContextProvider = ({ children }) => {
   useEffect(() => {
     const data = async () => {
       try {
-        const doc = await axios.get("http://localhost:5000/api/doctors");
+        const doc = await axios.get("https://doctors-appointment-54uq.onrender.com/api/doctors");
         const slots = await axios.post(
-          "http://localhost:5000/api/doctors/getSlots",
+          "https://doctors-appointment-54uq.onrender.com/api/doctors/getSlots",
           {
             doctor: "Dr. Manik Dalvi",
           }
         );
         const fees = await axios.post(
-          "http://localhost:5000/api/doctors/fees",
+          "https://doctors-appointment-54uq.onrender.com/api/doctors/fees",
           {
             doctor: "Dr. Manik Dalvi",
           }

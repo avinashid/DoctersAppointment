@@ -21,7 +21,7 @@ const Consultation = () => {
       console.log(currentDate, currentTime, currentRoom);
       try {
         const data = await axios.post(
-          "http://localhost:5000/api/doctors/slots",
+          "https://doctors-appointment-54uq.onrender.com/api/doctors/slots",
           {
             doctor: "Dr. Manik Dalvi",
             time: currentTime,
