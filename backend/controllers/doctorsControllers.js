@@ -12,7 +12,7 @@ const getDoctors = async (req, res) => {
 
 const getDoctorsFees = async (req, res) => {
   const doctor = req.body.doctor;
-  if (!doctor) return res.status(402).json({ message: "Invalid Data" });
+  if (!doctor) return res.status(401).json({ message: "Invalid Data" });
   try {
     const fees = await pool.query(
       "SELECT * FROM doctors_fees WHERE doctor_name = $1",
@@ -26,7 +26,7 @@ const getDoctorsFees = async (req, res) => {
 
 const getDoctorsSlot = async (req, res) => {
   const doctor = req.body.doctor;
-  if (!doctor) return res.status(402).json({ message: "Invalid Data" });
+  if (!doctor) return res.status(401).json({ message: "Invalid Data" });
   try {
     const slots = await pool.query(
       "SELECT * FROM doctors_slots WHERE doctor_name = $1",
@@ -41,10 +41,10 @@ const getDoctorsSlot = async (req, res) => {
 const setDoctorSlot = async (req, res) => {
   const { doctor, time, date, type } = req.body;
   if (!doctor || !time || !date || !type)
-    return res.status(402).json({ message: "Invalid Data" });
+    return res.status(401).json({ message: "Invalid Data" });
   try {
     const slots = await pool.query(
-      "insert into doctors_slots where docter_name = $1  (doctor_name,time,date,type) values ($2,$3,$4,$5) Returning *",
+      "insert into doctors_slots (doctor_name,time,date,type) values ($1,$2,$3,$4) Returning *",
       [doctor, time, date, type]
     );
     res.status(201).json(slots.rows);

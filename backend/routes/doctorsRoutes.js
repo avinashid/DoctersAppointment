@@ -9,8 +9,8 @@ const {
 const router = Router();
 
 router.get("/", getDoctors);
-router.get("/fees", getDoctorsFees);
-router.get("/slots", getDoctorsSlot);
+router.post("/fees", getDoctorsFees);
+router.post("/getSlots", getDoctorsSlot);
 router.post("/slots", setDoctorSlot);
 
 module.exports = router;
